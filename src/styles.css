@@ -148,3 +148,42 @@
     color: var(--color-foreground);
   }
 }
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@utility tile-press {
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #receipt-print,
+  #receipt-print * {
+    visibility: visible;
+    color: #000;
+  }
+  #receipt-print {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    padding: 12px;
+    width: 80mm;
+  }
+}
