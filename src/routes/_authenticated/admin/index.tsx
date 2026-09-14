@@ -101,8 +101,8 @@ function Reports() {
         <Stat label="Чеков" value={String(paid.length)} />
         <Stat label="Средний чек" value={formatKzt(avg)} />
         <Stat label="Возвраты" value={String(refunds.length)} />
-        <Stat label={PAYMENT_LABELS.cash} value={formatKzt(cash)} />
-        <Stat label={PAYMENT_LABELS.card} value={formatKzt(card)} />
+        <Stat label={PAYMENT_LABELS['cash']!} value={formatKzt(cash)} />
+        <Stat label={PAYMENT_LABELS['card']!} value={formatKzt(card)} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">

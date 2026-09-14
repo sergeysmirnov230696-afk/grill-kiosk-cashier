@@ -341,8 +341,8 @@ function ShiftReportDialog({
             <Row label="Чеков" value={String(paid.length)} />
             <Row label="Возвратов" value={String(refunded.length)} />
             <Row label="Выручка" value={formatKzt(revenue)} />
-            <Row label={PAYMENT_LABELS.cash} value={formatKzt(cash)} />
-            <Row label={PAYMENT_LABELS.card} value={formatKzt(card)} />
+            <Row label={PAYMENT_LABELS['cash']!} value={formatKzt(cash)} />
+            <Row label={PAYMENT_LABELS['card']!} value={formatKzt(card)} />
             <hr className="border-border" />
             <Row label="Касса на начало" value={formatKzt(shift.cash_start)} />
             <Row label="Наличных должно быть" value={formatKzt(expected)} />
