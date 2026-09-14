@@ -5,7 +5,7 @@ export type ReceiptData = {
   orderNo: number | string;
   createdAt: string;
   cashier: string;
-  lines: { name: string; qty: number; price: number; total: number; extra?: string }[];
+  lines: { name: string; qty: number; price: number; total: number; extra?: string | undefined }[];
   subtotal: number;
   discount: number;
   total: number;
