@@ -1,3 +1,4 @@
+import QRCode from "react-qr-code";
 import { formatDateTime, formatKzt, PAYMENT_LABELS } from "@/lib/pos";
 import type { Settings } from "@/lib/pos-queries";
 
@@ -15,6 +16,8 @@ export type ReceiptData = {
   cashReceived: number;
   change: number;
   refunded?: boolean;
+  fiscalNumber?: string | undefined;
+  checkUrl?: string | undefined;
 };
 
 export function Receipt({ data, settings }: { data: ReceiptData; settings: Settings | null }) {
