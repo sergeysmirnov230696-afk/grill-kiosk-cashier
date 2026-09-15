@@ -214,9 +214,29 @@ function PosScreen() {
         }));
       if (stock.length) await supabase.from("stock_movements").insert(stock);
 
-      return order;
+      let fiscal: KaspiResult = { status: "not_configured" };
+      if (settings.data?.kaspi_enabled) {
+        try {
+          fiscal = await fiscalize({
+            data: {
+              orderId: order.id,
+              orderNo: Number(order.order_no),
+              amount: total,
+              method,
+              cashAmount: cashPart,
+              cardAmount,
+            },
+          });
+        } catch (e) {
+          fiscal = { status: "error", message: e instanceof Error ? e.message : "Ошибка Kaspi" };
+        }
+      }
+
+      return { order, fiscal };
     },
-    onSuccess: (order) => {
+    onSuccess: ({ order, fiscal }) => {
+      if (fiscal.status === "error") toast.error(`Kaspi Касса: ${fiscal.message ?? "ошибка"}`);
+      if (fiscal.status === "ok") toast.success("Чек отправлен в Kaspi Касса");
       setReceipt({
         orderNo: order.order_no,
         createdAt: order.created_at,
@@ -236,6 +256,8 @@ function PosScreen() {
         cardAmount: order.card_amount,
         cashReceived: order.cash_received,
         change: order.change_given,
+        fiscalNumber: fiscal.fiscalNumber,
+        checkUrl: fiscal.checkUrl,
       });
       setLines([]);
       setDiscount(0);
@@ -247,6 +269,8 @@ function PosScreen() {
     },
     onError: (e: Error) => toast.error(e.message),
   });
+
+  useAutoPrint(!!receipt, settings.data?.auto_print ?? true, settings.data?.print_copies ?? 1);
 
   const activeEmployees = (employees.data ?? []).filter((e) => e.is_active);
 
