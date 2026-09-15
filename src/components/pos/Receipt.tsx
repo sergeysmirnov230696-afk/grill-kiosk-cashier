@@ -1,3 +1,4 @@
+import QRCode from "react-qr-code";
 import { formatDateTime, formatKzt, PAYMENT_LABELS } from "@/lib/pos";
 import type { Settings } from "@/lib/pos-queries";
 
@@ -15,6 +16,8 @@ export type ReceiptData = {
   cashReceived: number;
   change: number;
   refunded?: boolean;
+  fiscalNumber?: string | undefined;
+  checkUrl?: string | undefined;
 };
 
 export function Receipt({ data, settings }: { data: ReceiptData; settings: Settings | null }) {
@@ -68,6 +71,18 @@ export function Receipt({ data, settings }: { data: ReceiptData; settings: Setti
       {data.cashReceived > 0 && <Row label="Получено" value={formatKzt(data.cashReceived)} />}
       {data.change > 0 && <Row label="Сдача" value={formatKzt(data.change)} />}
       <Divider />
+      {(data.fiscalNumber || data.checkUrl) && (
+        <>
+          <div className="text-center">Фискальный чек Kaspi</div>
+          {data.fiscalNumber ? <div className="text-center">№ {data.fiscalNumber}</div> : null}
+          {data.checkUrl ? (
+            <div className="mt-2 flex justify-center">
+              <QRCode value={data.checkUrl} size={112} bgColor="#ffffff" fgColor="#000000" />
+            </div>
+          ) : null}
+          <Divider />
+        </>
+      )}
       <div className="text-center">{settings?.receipt_footer ?? "Спасибо за покупку!"}</div>
     </div>
   );

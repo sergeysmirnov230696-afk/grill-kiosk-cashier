@@ -158,7 +158,12 @@ export type Database = {
           created_by: string | null
           discount: number
           employee_id: string | null
+          fiscal_check_url: string | null
+          fiscal_error: string | null
+          fiscal_number: string | null
+          fiscal_status: string
           id: string
+          kaspi_txn_id: string | null
           note: string | null
           order_no: number
           payment_method: string
@@ -176,7 +181,12 @@ export type Database = {
           created_by?: string | null
           discount?: number
           employee_id?: string | null
+          fiscal_check_url?: string | null
+          fiscal_error?: string | null
+          fiscal_number?: string | null
+          fiscal_status?: string
           id?: string
+          kaspi_txn_id?: string | null
           note?: string | null
           order_no?: never
           payment_method?: string
@@ -194,7 +204,12 @@ export type Database = {
           created_by?: string | null
           discount?: number
           employee_id?: string | null
+          fiscal_check_url?: string | null
+          fiscal_error?: string | null
+          fiscal_number?: string | null
+          fiscal_status?: string
           id?: string
+          kaspi_txn_id?: string | null
           note?: string | null
           order_no?: never
           payment_method?: string
@@ -285,8 +300,14 @@ export type Database = {
       settings: {
         Row: {
           address: string
+          auto_print: boolean
           id: boolean
+          kaspi_api_url: string
+          kaspi_bin: string
+          kaspi_enabled: boolean
+          kaspi_terminal_id: string
           phone: string
+          print_copies: number
           receipt_footer: string
           shop_name: string
           updated_at: string
@@ -294,8 +315,14 @@ export type Database = {
         }
         Insert: {
           address?: string
+          auto_print?: boolean
           id?: boolean
+          kaspi_api_url?: string
+          kaspi_bin?: string
+          kaspi_enabled?: boolean
+          kaspi_terminal_id?: string
           phone?: string
+          print_copies?: number
           receipt_footer?: string
           shop_name?: string
           updated_at?: string
@@ -303,8 +330,14 @@ export type Database = {
         }
         Update: {
           address?: string
+          auto_print?: boolean
           id?: boolean
+          kaspi_api_url?: string
+          kaspi_bin?: string
+          kaspi_enabled?: boolean
+          kaspi_terminal_id?: string
           phone?: string
+          print_copies?: number
           receipt_footer?: string
           shop_name?: string
           updated_at?: string
