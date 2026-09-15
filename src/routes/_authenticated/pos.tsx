@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowLeft,
   Banknote,
@@ -37,6 +38,8 @@ import {
   type CartModifier,
 } from "@/lib/pos";
 import { Receipt, type ReceiptData } from "@/components/pos/Receipt";
+import { fiscalizeOrder, type KaspiResult } from "@/lib/kaspi.functions";
+import { useAutoPrint } from "@/lib/use-auto-print";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
