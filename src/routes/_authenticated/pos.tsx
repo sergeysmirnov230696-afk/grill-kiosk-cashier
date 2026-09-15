@@ -70,6 +70,7 @@ export const Route = createFileRoute("/_authenticated/pos")({
 
 function PosScreen() {
   const qc = useQueryClient();
+  const fiscalize = useServerFn(fiscalizeOrder);
   const categories = useQuery(categoriesQuery);
   const products = useQuery(productsQuery);
   const modifiers = useQuery(modifiersQuery);
