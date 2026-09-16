@@ -30,6 +30,22 @@ export const ROLE_LABELS: Record<string, string> = {
   cashier: "Кассир",
 };
 
+export type FulfillmentStatus = "cooking" | "done" | "cancelled";
+
+export const FULFILLMENT_LABELS: Record<string, string> = {
+  cooking: "Готовится",
+  done: "Выполнен",
+  cancelled: "Отменён",
+};
+
+export type KaspiResult = {
+  status: "ok" | "not_configured" | "error";
+  message?: string;
+  fiscalNumber?: string;
+  checkUrl?: string;
+  txnId?: string;
+};
+
 export const CASH_BILLS = [500, 1000, 2000, 5000, 10000, 20000];
 
 export type CartModifier = { id: string; name: string; price: number };
