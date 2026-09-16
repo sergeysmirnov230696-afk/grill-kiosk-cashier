@@ -162,6 +162,7 @@ export type Database = {
           fiscal_error: string | null
           fiscal_number: string | null
           fiscal_status: string
+          fulfillment_status: string
           id: string
           kaspi_txn_id: string | null
           note: string | null
@@ -185,6 +186,7 @@ export type Database = {
           fiscal_error?: string | null
           fiscal_number?: string | null
           fiscal_status?: string
+          fulfillment_status?: string
           id?: string
           kaspi_txn_id?: string | null
           note?: string | null
@@ -208,6 +210,7 @@ export type Database = {
           fiscal_error?: string | null
           fiscal_number?: string | null
           fiscal_status?: string
+          fulfillment_status?: string
           id?: string
           kaspi_txn_id?: string | null
           note?: string | null
